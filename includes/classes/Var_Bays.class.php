@@ -8,21 +8,24 @@ class Var_Bays
 	private $_observe;
 
 
-	public function __construct($nom) // Constructeur demandant 2 paramètres
+	public function __construct($nom) 
 	  {
-	    echo 'Voici le constructeur !'; // Message s'affichant une fois que tout objet est créé.
-	    $this->setNom($nom); // Initialisation de la force.
+	    
+	    $this->setNom($nom); 
 	    $this->_parents=array();
 	    
 	  }
+
 	public function addParent($pere){
 		array_push($this->_parents,$pere);
-		//var_dump($this->_parents);
-		//echo 'test';
-		//var_dump($tt);
 		return;
 	}
-	public function getProba() // Une méthode qui déplacera le personnage (modifiera sa localisation).
+
+	public function getProbaCond($val){
+		return $this->_proba[$val];
+	}
+
+	public function getProbaVrai() 
 	  {
 	  	if($this->_parents==null){
 	  		echo "Pas de parents!";
@@ -33,33 +36,70 @@ class Var_Bays
 	  	}
 	  	
 	  }
-	public function getNom() // Une méthode qui déplacera le personnage (modifiera sa localisation).
-	{
+	public function getProbaFaux() {
+		return 1-getProbaVrai();
+	}
+
+
+	public function getNom(){
 	  	return $this->_nom;
 	}
-	public function afficheParents() // Une méthode qui déplacera le personnage (modifiera sa localisation).
-	{	
+
+
+	public function afficheParents(){	
 		if($this->_parents!=null){
 			echo "</br>Les parents de " . $this->_nom . " sont : </br><ul>";
 		
-			foreach ($this->_parents as $clé => $valeur) {
+			foreach ($this->_parents as $clé => $valeur){
 				echo '<li>'.$valeur.'</li>';
 			}
 			echo '</ul>';
-			//var_dump($this->_parents);
 		}else{
 			echo "</br>". $this->_nom . " n'a pas de parents. </br>";
-		
-
 		}
 	  	return;
 	}
+
+	public function probaCond(	$iad,  
+								$i_ad,
+								$ia_d,
+								$i_a_d,
+								$_iad,
+								$_i_ad,
+								$_ia_d,
+								$_i_a_d){
+		
+
+		if($this->_nom=="infarctus"){
+			$this->_proba=array("iad"=> $iad, 
+								"i_ad"=>$i_ad,
+								"ia_d"=>$ia_d,
+								"i_a_d"=>$i_a_d,
+								"_iad"=>$_iad,
+								"_i_ad"=>$_i_ad,
+								"_ia_d"=>$_ia_d,
+								"_i_a_d"=>$_i_a_d);
+		}
+	}
+//*/
 	public function setNom($nom){
 		$this->_nom=$nom;
 	}
+
+
 	public function setProba($proba){
-		$this->_proba=$proba;
-	}
+		if($this->_parents==null){
+			$this->_proba=$proba;
+		}else{
+
+				
+
+			}
+			echo "On ne peut pas fixer ma proba directement "; 
+		}
+
+		
+	//*/
 
 }
 ?>

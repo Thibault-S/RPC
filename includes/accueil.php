@@ -12,8 +12,22 @@
 	$var_drogue->afficheParents();
 	$var_infarctus->afficheParents();
 
-	$var_infarctus->setProba(0.5);
-	echo $var_infarctus->getProba();
+
+	$var_infarctus->probaCond(
+								0.108,//$iad,  
+								0.072,//$i_ad,
+								0.012,//$ia_d,
+								0.008,//$i_a_d,
+								0.016,//$_iad,
+								0.144,//$_i_ad,
+								0.064,//$_ia_d,
+								0.576//$_i_a_d
+								);//*/
+
+	//$var_infarctus->setProba(0.5);
+	//echo $var_infarctus->getProbaVrai();
+
+	echo 'coucou '. $var_infarctus->getProbaCond("iad");
 	
 	
 	
@@ -55,6 +69,12 @@
 			<?php 
 
 				foreach($_POST as $variable=> $valeur){
+					if (($valeur=="vrai")||($valeur=="faux")||($valeur=="inconnu")){
+						$var_en_cours[$variable]=$valeur;
+					}
+				}
+
+				foreach($_POST as $variable=> $valeur){
 					
 					if (($valeur=="vrai")||($valeur=="faux")){
 						echo "Sachant que " . $variable . " est " . $valeur. "</br>";
@@ -71,12 +91,46 @@
 						echo '<button name="recherche" type="submit" value="'.$variable.'">'. $variable . "</button> </br>";
 					}
 				}
+
 				if(isset($_POST["recherche"])){
-				echo "Vous avez choisi de chercher ".$_POST["recherche"];
-			}
+					echo "Vous avez choisi de chercher ".$_POST["recherche"];
+					echo ' : p('.$_POST["recherche"];
+						$i=0;
+					foreach($_POST as $variable=> $valeur){
+						
+						if ($valeur=="vrai"){
+							if($i==0){echo'|';}
+							echo  $variable .',';
+							
+						}
+						$i=$i+1;
+
+					}
+					echo ")=".$var_infarctus->getProbaCond(parse($_POST["recherche"],$var_en_cours));
+					
+				}
 
 			?>
 			</form>
 		</div>
 	</div>
 </div>
+<?php
+	function parse($recherche,$var_en_cours){
+		$res="".$recherche[0];
+		foreach ($var_en_cours as $cle => $valeur) {
+			if($valeur=="vrai"){
+				$res=$res.$cle[0];
+			}
+			if($valeur=="faux"){
+				$res=$res.'_'.$cle[0];
+			}	
+		}
+		//echo 'res:'$res;
+		return $res;
+	}
+
+?>
+
+
+
