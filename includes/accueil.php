@@ -1,6 +1,12 @@
 
 
 <div class="container">
+	<?php
+	$var_alcool = new Var_Bays("alcool");
+	echo $var_alcool->getProba();
+	$p_alcool=0.5;
+	$p_drogue=0.5;
+	?>
 	<div class="row">
 		<div class="col-lg-6 ">
 			<table class="table">

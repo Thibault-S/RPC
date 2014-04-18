@@ -1,4 +1,12 @@
- <!DOCTYPE html>
+ <?php
+	function mesClasses($classe) {
+		if(file_exists('includes/classes/' . $classe . '.class.php')) {require_once 'includes/classes/' . $classe . '.class.php'; }
+	}
+	spl_autoload_register('mesClasses');
+
+	
+?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Projet Représentation Des Connaissances</title>
