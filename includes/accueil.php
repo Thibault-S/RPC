@@ -3,9 +3,20 @@
 <div class="container">
 	<?php
 	$var_alcool = new Var_Bays("alcool");
-	echo $var_alcool->getProba();
-	$p_alcool=0.5;
-	$p_drogue=0.5;
+	$var_drogue = new Var_Bays("drogue");
+	$var_infarctus = new Var_Bays("infarctus");
+	$var_infarctus->addParent("alcool");
+	$var_infarctus->addParent("drogue");
+	
+	$var_alcool->afficheParents();
+	$var_drogue->afficheParents();
+	$var_infarctus->afficheParents();
+
+	$var_infarctus->setProba(0.5);
+	echo $var_infarctus->getProba();
+	
+	
+	
 	?>
 	<div class="row">
 		<div class="col-lg-6 ">
@@ -15,7 +26,7 @@
 						 <td>Variable</td>
 						 <td>Vrai</td>
 						 <td>Faux</td>
-						 <td>?</td>
+						 <td>Inconnu</td>
 					</tr>
 				</thead>
 				<tbody>
