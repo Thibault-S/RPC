@@ -60,7 +60,7 @@ class Var_Bays
 	  	return;
 	}
 
-	public function probaCond(	$iad,  
+	public function probaCondI(	$iad,  
 								$i_ad,
 								$ia_d,
 								$i_a_d,
@@ -81,6 +81,45 @@ class Var_Bays
 								"_i_a_d"=>$_i_a_d);
 		}
 	}
+
+		public function probaCondA(	$aipr,  
+									$aip_r, 
+									$ai_pr, 
+									$ai_p_r, 
+									$a_ipr, 
+									$a_ip_r, 
+									$a_i_pr, 
+									$a_i_p_r,
+									$_aipr,  
+									$_aip_r, 
+									$_ai_pr, 
+									$_ai_p_r, 
+									$_a_ipr, 
+									$_a_ip_r, 
+									$_a_i_pr, 
+									$_a_i_p_r){
+		
+
+		if($this->_nom=="accident"){
+			$this->_proba=array(	"aipr"=>$aipr,  
+									"aip-r"=>$aip_r, 
+									"ai_pr"=>$ai_pr, 
+									"ai_p_r"=>$ai_p_r, 
+									"a_ipr"=>$a_ipr, 
+									"a_ip_r"=>$a_ip_r, 
+									"a_i_pr"=>$a_i_pr, 
+									"a_i_p_r"=>$a_i_p_r,
+									"_aipr"=>$_aipr,  
+									"_aip-r"=>$_aip_r, 
+									"_ai_pr"=>$_ai_pr, 
+									"_ai_p_r"=>$_ai_p_r, 
+									"_a_ipr"=>$_a_ipr, 
+									"_a_ip_r"=>$_a_ip_r, 
+									"_a_i_pr"=>$_a_i_pr, 
+									"_a_i_p_r"=>$_a_i_p_r,);
+		}
+	}
+
 //*/
 	public function setNom($nom){
 		$this->_nom=$nom;
